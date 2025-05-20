@@ -37,10 +37,10 @@ number_of_BPMs = QLabel('BPMs: 0', parent=window)
 
 set_selbpm_num = lambda : number_of_BPMs.setText(f"BPMs: {selectedBPMs.count()}")
 
-send_to_plan_button = QPushButton('Send to plan', parent=window) 
+button_send_to_plan = QPushButton('Send to plan', parent=window) 
 send_to_plan = lambda : transfer_selection(SCB.bpmList, selectedBPMs)
-send_to_plan_button.clicked.connect(send_to_plan)
-send_to_plan_button.clicked.connect(set_selbpm_num)
+button_send_to_plan.clicked.connect(send_to_plan)
+button_send_to_plan.clicked.connect(set_selbpm_num)
 
 
 button5 = QPushButton('Remove selected', parent=window) 
@@ -110,13 +110,13 @@ run_thread_button = QPushButton('Empty')
 
 layout.addWidget(SCB, 0, 0, *SCB.layout_args)
 
-for qq in [SCB, number_of_BPMs, send_to_plan_button, selectedBPMs, button5, button6, button7, results, plot_window, pbutton, connect_button, progress_bar]:
+for qq in [SCB, number_of_BPMs, button_send_to_plan, selectedBPMs, button5, button6, button7, results, plot_window, pbutton, connect_button, progress_bar]:
     qq.setSizePolicy(sp, sp)
 for qq in [results]:
     qq.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
 layout.addWidget(number_of_BPMs, 3, 0, 1, 1)
-layout.addWidget(send_to_plan_button, 3, 2, 1, 1)
+layout.addWidget(button_send_to_plan, 3, 2, 1, 1)
 
 layout.addWidget(selectedBPMs, 4, 0, 1, 1)
 layout.addWidget(button5, 5, 0, 1, 1)
