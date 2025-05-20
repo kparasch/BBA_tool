@@ -37,10 +37,10 @@ number_of_BPMs = QLabel('BPMs: 0', parent=window)
 
 set_selbpm_num = lambda : number_of_BPMs.setText(f"BPMs: {selectedBPMs.count()}")
 
-button4 = QPushButton('Send to plan', parent=window) 
+send_to_plan_button = QPushButton('Send to plan', parent=window) 
 send_to_plan = lambda : transfer_selection(SCB.bpmList, selectedBPMs)
-button4.clicked.connect(send_to_plan)
-button4.clicked.connect(set_selbpm_num)
+send_to_plan_button.clicked.connect(send_to_plan)
+send_to_plan_button.clicked.connect(set_selbpm_num)
 
 
 button5 = QPushButton('Remove selected', parent=window) 
@@ -54,10 +54,6 @@ button7 = QPushButton('Remove all', parent=window)
 button7.clicked.connect(selectedBPMs.clear)
 button7.clicked.connect(set_selbpm_num)
 #button7.setStyleSheet(f'background-color: {Dunkelrot}; color: black;')
-
-plot_window = QWidget(parent=window)
-plot_layout = QGridLayout(parent=plot_window)
-plot_window.setLayout(plot_layout)
 
 
 
@@ -90,6 +86,13 @@ pbutton.clicked.connect(bba_plotV.plot)
 sp = QSizePolicy.Policy.Expanding
 for qq in [bba_plotH.canvas, bba_plotH.toolbar, bba_plotV.canvas, bba_plotV.toolbar]:
     qq.setSizePolicy(sp, sp)
+
+
+## Plots layout
+plot_window = QWidget(parent=window)
+plot_layout = QGridLayout(parent=plot_window)
+plot_window.setLayout(plot_layout)
+
 plot_layout.addWidget(bba_plotH.canvas, 0, 0, 1, 1)
 plot_layout.addWidget(bba_plotH.toolbar, 1, 0, 1, 1)
 plot_layout.addWidget(bba_plotV.canvas, 0, 1, 1, 1)
@@ -107,13 +110,13 @@ run_thread_button = QPushButton('Empty')
 
 layout.addWidget(SCB, 0, 0, *SCB.layout_args)
 
-for qq in [SCB, number_of_BPMs, button4, selectedBPMs, button5, button6, button7, results, plot_window, pbutton, connect_button, progress_bar]:
+for qq in [SCB, number_of_BPMs, send_to_plan_button, selectedBPMs, button5, button6, button7, results, plot_window, pbutton, connect_button, progress_bar]:
     qq.setSizePolicy(sp, sp)
 for qq in [results]:
     qq.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
 layout.addWidget(number_of_BPMs, 3, 0, 1, 1)
-layout.addWidget(button4, 3, 4, 1, 1)
+layout.addWidget(send_to_plan_button, 3, 4, 1, 1)
 
 layout.addWidget(selectedBPMs, 4, 0, 1, 1)
 layout.addWidget(button5, 5, 0, 1, 1)
