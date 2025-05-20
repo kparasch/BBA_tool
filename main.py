@@ -116,7 +116,7 @@ for qq in [results]:
     qq.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
 layout.addWidget(number_of_BPMs, 3, 0, 1, 1)
-layout.addWidget(send_to_plan_button, 3, 4, 1, 1)
+layout.addWidget(send_to_plan_button, 3, 2, 1, 1)
 
 layout.addWidget(selectedBPMs, 4, 0, 1, 1)
 layout.addWidget(button5, 5, 0, 1, 1)
