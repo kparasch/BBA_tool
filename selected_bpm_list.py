@@ -11,6 +11,8 @@ class SelectedBPMList:
     def __init__(self, parent=None):
         #super().__init__(parent)
         self.selectedBPMs = QListWidget(parent=parent)
-        self.selectedBPMs.setMinimumSize(int(0.17*parent.width()), int(0.4*parent.height()))
+        self.selectedBPMs.setFixedWidth(int(0.17*parent.width()))
+        self.selectedBPMs.setMinimumHeight(int(0.4*parent.height()))
+
         self.selectedBPMs.setSelectionMode(QAbstractItemView.SelectionMode.ExtendedSelection)
         self.selectedBPMs.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.MinimumExpanding)

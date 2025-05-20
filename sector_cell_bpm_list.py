@@ -10,7 +10,7 @@ class SectorCellBPMList(QWidget):
     rowSpan = 3
     columnSpan = 3
 
-    min_width = 0.16
+    min_width = 0.17
     min_height = 0.18
 
     def __init__(self, parent=None):

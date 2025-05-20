@@ -39,9 +39,11 @@ class RingClient:
                 measurement.wait(10)
 
             if results is not None:
-                results.setRowCount(bpm+1)
-                results.setItem(bpm, 0, QTableWidgetItem(f'{1e6*offset_H:.1f} +- {1e6*offseterr_H:.1f} μm'))
-                results.setItem(bpm, 1, QTableWidgetItem(f'{1e6*offset_V:.1f} +- {1e6*offseterr_V:.1f} μm'))
+                #index = results.getVerticalHeaderItem(bpm) 
+                # column 0 is name, 1 is H, 2 is V
+                results.setItem(bpm, 1, QTableWidgetItem(f'{1e6*offset_H:.1f} ± {1e6*offseterr_H:.1f}'))
+                results.setItem(bpm, 2, QTableWidgetItem(f'{1e6*offset_V:.1f} ± {1e6*offseterr_V:.1f}'))
+                #results.setVerticalHeaderItem(bpm, index)
         except Exception as e:
             print(f'Error during BBA: {e}')
             self.socket.close()

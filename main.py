@@ -1,17 +1,13 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QGridLayout, QPushButton, QListWidget, QListWidgetItem, QAbstractItemView, QProgressBar, QTableWidget, QSizePolicy
-from PyQt6.QtWidgets import QHBoxLayout
-from PyQt6.QtCore import pyqtSignal, QObject, QThread, QCoreApplication, QElapsedTimer
+from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QGridLayout, QPushButton, QProgressBar, QTableWidget, QSizePolicy
+from PyQt6.QtWidgets import QTableWidgetItem
 from colors import DESYCyan, DESYOrange, Dunkelblau, Gelb, Dunkelrot, Petrol, Grun, Olive
 
-import time
-
-import numpy as np
 
 from sector_cell_bpm_list import SectorCellBPMList
 from selected_bpm_list import SelectedBPMList
 from general import remove_selected, transfer_selection
-from bba_worker import get_bba_thread, BBAplot, BBA_worker
+from bba_worker import get_bba_thread, BBAplot
 
 app = QApplication([])
 
@@ -69,10 +65,19 @@ progress_bar.setFormat('%v/%m')
 progress_bar.setTextVisible(True)
 
 results = QTableWidget(parent=window)
-results.setColumnCount(2)
-results.setHorizontalHeaderLabels(['Horizontal', 'Vertical'])
-results.setRowCount(1)
+results.setMinimumWidth(430)
+results.setMinimumHeight(300)
+results.setColumnCount(3)
+results.setHorizontalHeaderLabels(['Name', 'Horizontal [μm]', 'Vertical [μm]'])
+results.setColumnWidth(0, 160)
+results.setColumnWidth(1, 110)
+results.setColumnWidth(2, 110)
 
+# for size testing
+# results.setRowCount(790)
+# results.setItem(0, 0, QTableWidgetItem('SSS_SO/R/BPM_SOR_10'))
+# results.setItem(0, 1, QTableWidgetItem('1000.0 ± 100.0'))
+# results.setItem(0, 2, QTableWidgetItem('1000.0 ± 100.0'))
 
 bba_thread = get_bba_thread(progress_bar, selectedBPMs, results, bba_plotH, bba_plotV)
 
@@ -123,7 +128,7 @@ layout.addWidget(selectedBPMs, 4, 0, 1, 1)
 layout.addWidget(button5, 5, 0, 1, 1)
 layout.addWidget(button6, 7, 0, 1, 1)
 layout.addWidget(button7, 6, 0, 1, 1)
-layout.addWidget(results, 4, 1, 1, 1)
+layout.addWidget(results, 4, 1, 1, 2)
 layout.addWidget(plot_window, 0, 3, 9, 1)
 
 layout.addWidget(pbutton, 7, 1, 1, 1)

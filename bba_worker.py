@@ -1,4 +1,5 @@
 from PyQt6.QtCore import pyqtSignal, QObject, QThread, QCoreApplication, QElapsedTimer, pyqtSlot
+from PyQt6.QtWidgets import QTableWidgetItem
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -51,6 +52,13 @@ class BBA_worker(QObject):
         self.selectedBPMs.setEnabled(False)
         print('Starting measurement!!')
         n_bpms = self.selectedBPMs.count()
+
+        self.results.setRowCount(n_bpms)
+        for row in range(n_bpms):
+            self.results.setItem(row, 0, QTableWidgetItem(self.selectedBPMs.item(row).text()))
+            self.results.setItem(row, 1, QTableWidgetItem('          '))
+            self.results.setItem(row, 2, QTableWidgetItem('          '))
+
         self.progress_bar.setMinimum(0)
         self.progress_bar.setMaximum(n_bpms)
         measurement = BBA_measurement(self.progress_bar, self.bba_plotH, self.bba_plotV)
