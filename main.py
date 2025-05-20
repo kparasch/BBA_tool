@@ -70,6 +70,7 @@ progress_bar.setTextVisible(True)
 
 results = QTableWidget(parent=window)
 results.setColumnCount(2)
+results.setHorizontalHeaderLabels(['Horizontal', 'Vertical'])
 results.setRowCount(1)
 
 
@@ -95,15 +96,15 @@ plot_window.setLayout(plot_layout)
 
 plot_layout.addWidget(bba_plotH.canvas, 0, 0, 1, 1)
 plot_layout.addWidget(bba_plotH.toolbar, 1, 0, 1, 1)
-plot_layout.addWidget(bba_plotV.canvas, 0, 1, 1, 1)
-plot_layout.addWidget(bba_plotV.toolbar, 1, 1, 1, 1)
+plot_layout.addWidget(bba_plotV.canvas, 2, 0, 1, 1)
+plot_layout.addWidget(bba_plotV.toolbar, 3, 0, 1, 1)
 
 
 
 connect_button = QPushButton('Disable')
 connect_button.clicked.connect(lambda : selBPM.selectedBPMs.setDisabled(True))
 
-run_thread_button = QPushButton('Empty')
+#run_thread_button = QPushButton('Empty')
 #run_thread_button.clicked.connect(worker_thread.start)
 
 ## Master Layout
@@ -123,12 +124,12 @@ layout.addWidget(button5, 5, 0, 1, 1)
 layout.addWidget(button6, 7, 0, 1, 1)
 layout.addWidget(button7, 6, 0, 1, 1)
 layout.addWidget(results, 4, 1, 1, 1)
-layout.addWidget(plot_window, 4, 2, 1, 3)
+layout.addWidget(plot_window, 0, 3, 9, 1)
 
 layout.addWidget(pbutton, 7, 1, 1, 1)
 layout.addWidget(connect_button, 7, 2, 1, 1)
-layout.addWidget(run_thread_button, 7, 3, 1, 1)
+#layout.addWidget(run_thread_button, 7, 3, 1, 1)
 
-layout.addWidget(progress_bar, 8, 0, 1, 6)
+layout.addWidget(progress_bar, 8, 0, 1, 3)
 window.show()
 sys.exit(app.exec())
